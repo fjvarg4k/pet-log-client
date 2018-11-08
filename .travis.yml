@@ -1,0 +1,10 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: Zp3LGTsqAD9XoSUbX7zHJJL//U1OlAkPKj4Om3Oy+0O0uePfuLpnYHkEqB2HenDl+Qn1vduV6vcxOs6SZeEz9cevBqc9tLJydoQswOkH7mQ+DCXWEEGndvdVYKh2jnMBgtpeM9GB9gZ49oDxqUtgWsYBbYoiJYYZ+sX7v++LlvBW+5ocv0oQY/dk/+DQYDQ4LxseiOMpzecwep3m1FCpXvkf7jEryfCET3ZSE4djOjnJXwF43+ZFWjP7iXAz3AarQNd5nPyBhPNS5D0SWM+ITY2eZ5hX0vmXOx5csoV57YabuIH1v4Pklou0hehXlj2jX1a/EQYe5iKmggkUQNXbVcnXnPDn11LD5cPuPC1u/UHHOLigN57lJeZrq5GlYayAiL0jBq8hj8znPbRRrRWRiKCmlrw1jAq6hlJiLMig3Qqjf00wAmpOBi7ckCPlj0z41hhlta3oLcVTUB4y4CQTACEYj+J9OsuLRr9QCyjai1FcmTxyYywfTqb6T97mRieOo+eMu8bJPHr1fduw85SpHn6SkF9BDNtkh2F54SmtfYns/u7UhrpVLSPK16tY1oR+7QiyvfE8IrFL2q++FguEi1pwoxIdB/Zl4cqXCVj1dFhAs2ocG5ywc9q+6wF7x6h0psCdlTe43HnGMuE5StqmIPCijT7Rm3icyP+G+kGlRUM=
+app: pet-log
