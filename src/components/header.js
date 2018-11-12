@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from '../actions/auth';
+// import { login } from '../actions/auth';
 import { clearAuth } from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
 
@@ -16,11 +16,11 @@ export class Header extends React.Component {
 
     if (!this.props.loggedIn) {
       registerLink = (
-        <li><Link to="/RegistrationPage" className="header-link">Sign Up</Link></li>
+        <li><Link to="/registration" className="header-link">Sign Up</Link></li>
       );
 
       loginLink = (
-        <li><Link to="/LoginPage" className="header-link">Log In</Link></li>
+        <li><Link to="/login" className="header-link">Log In</Link></li>
       );
 
       appTitle = (
