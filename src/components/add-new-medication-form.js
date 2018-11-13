@@ -3,17 +3,17 @@ import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import TextArea from './textarea';
 
-export class EditMedicationDetailsForm extends React.Component {
+export class AddNewMedicationForm extends React.Component {
   onSubmit(values) {}
 
   render() {
     return (
       <form
-        className="edit-medication-details-form"
+        className="add-new-medication-form"
         onSubmit={this.onSubmit}
       >
         <fieldset>
-          <legend>Edit Medication Info</legend>
+          <legend>Add New Medication</legend>
           <label className="form-label" htmlFor="name">Name</label>
           <Field component={Input} type="text" name="name" />
           <label className="form-label" htmlFor="medicationDays">Medication Days</label>
@@ -36,7 +36,7 @@ export class EditMedicationDetailsForm extends React.Component {
 }
 
 export default reduxForm({
-  form: 'edit-medication-details',
+  form: 'add-new-medication',
   onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('edit-medication-details', Object.keys(errors)[0]))
-})(EditMedicationDetailsForm);
+    dispatch(focus('add-new-medication', Object.keys(errors)[0]))
+})(AddNewMedicationForm);

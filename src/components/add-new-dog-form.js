@@ -3,17 +3,17 @@ import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty, isTrimmed } from '../validators';
 
-export class EditDogDetailsForm extends React.Component {
+export class AddNewDogForm extends React.Component {
   onSubmit(values) {}
 
   render() {
     return (
       <form
-        className="edit-dog-details-form"
+        className="add-new-dog-form"
         onSubmit={this.onSubmit}
       >
         <fieldset>
-          <legend>Edit Dog Info</legend>
+          <legend>Register New Pet</legend>
           <label className="form-label" htmlFor="name">Name</label>
           <Field component={Input} type="text" name="name" validate={[required, nonEmpty, isTrimmed]} />
           <label className="form-label" htmlFor="breed">Breed</label>
@@ -32,7 +32,7 @@ export class EditDogDetailsForm extends React.Component {
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
           >
-            Confirm Edit
+            Submit
           </button>
         </fieldset>
       </form>
@@ -41,7 +41,7 @@ export class EditDogDetailsForm extends React.Component {
 }
 
 export default reduxForm({
-  form: 'edit-dog-details',
+  form: 'add-new-dog',
   onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('edit-dog-details', Object.keys(errors)[0]))
-})(EditDogDetailsForm);
+    dispatch(focus('add-new-dog', Object.keys(errors)[0]))
+})(AddNewDogForm);

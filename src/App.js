@@ -7,6 +7,9 @@ import LandingPage from './components/landing-page';
 import RegistrationPage from './components/registration-page';
 import LoginPage from './components/login-page';
 import Dashboard from './components/dashboard';
+import AddNewDogPage from './components/add-new-dog-page';
+import AddNewMedicationPage from './components/add-new-medication-page';
+import AddNewVetPage from './components/add-new-vet-page';
 import DogDetailsPage from './components/dog-details-page';
 import DogMedicationPage from './components/dog-medication-page';
 import DogVetInfoPage from './components/dog-vet-info-page';
@@ -55,9 +58,19 @@ export class App extends React.Component {
           <Route exact path="/registration" component={RegistrationPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route path="/dog-details/:dogid" component={DogDetailsPage} />
-          <Route path="/dog-medication/:medicationid" component={DogMedicationPage} />
-          <Route path="/vet-info/:dogid" component={DogVetInfoPage} />
+          <Route exact path="/add-new-dog" component={AddNewDogPage} />
+          <Route exact path="/add-new-medication" component={AddNewMedicationPage} />
+          <Route exact path="/add-new-vet" component={AddNewVetPage} />
+
+          {/* <Route path="/dog-details/:dogid" component={DogDetailsPage} /> */}
+          <Route path="/dog-details/" component={DogDetailsPage} />
+
+          {/* <Route path="/dog-medication/:dogid" component={DogMedicationPage} /> */}
+          <Route path="/dog-medication" component={DogMedicationPage} />
+
+          {/* <Route path="/vet-info/:dogid" component={DogVetInfoPage} /> */}
+          <Route path="/vet-info/" component={DogVetInfoPage} />
+
           <Route exact path="/edit-dog-details" component={EditDogDetailsPage} />
           <Route exact path="/edit-medication-details" component={EditMedicationDetailsPage} />
           <Route exact path="/edit-vet-info" component={EditVetInfoDetailsPage} />
