@@ -24,7 +24,8 @@ export class LoginForm extends React.Component {
     return (
       <form
         className="login-form"
-        onSubmit={this.onSubmit}
+        onSubmit={this.props.handleSubmit(values =>
+        this.onSubmit(values))}
       >
         <fieldset>
           <legend>Log In</legend>

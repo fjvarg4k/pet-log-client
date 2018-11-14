@@ -5,9 +5,9 @@ import {normalizeResponseErrors} from './utilities';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
-export const setAuthToken = authToken => ({
+export const setAuthToken = jwtToken => ({
   type: SET_AUTH_TOKEN,
-  authToken
+  jwtToken
 });
 
 export const CLEAR_AUTH = 'CLEAR_AUTH';
@@ -34,11 +34,11 @@ export const authError = error => ({
 
 // Stores auth token in state and localStorage, decodes and stores
 // user data store in the token
-const storeAuthInfo = (authToken, dispatch) => {
-  const decodedToken = jwtDecode(authToken);
-  dispatch(setAuthToken(authToken));
+const storeAuthInfo = (jwtToken, dispatch) => {
+  const decodedToken = jwtDecode(jwtToken);
+  dispatch(setAuthToken(jwtToken));
   dispatch(authSuccess(decodedToken.user));
-  saveAuthToken(authToken);
+  saveAuthToken(jwtToken);
 };
 
 // Log user in using provided data from login form
@@ -58,7 +58,7 @@ export const login = (username, password) => dispatch => {
     // Checks for any errors in response
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+    .then(({jwtToken}) => storeAuthInfo(jwtToken, dispatch))
     .catch(err => {
       const {code} = err;
       const message =
@@ -79,20 +79,20 @@ export const login = (username, password) => dispatch => {
 // Refresh auth token when requested to do so
 export const refreshAuthToken = () => (dispatch, getState) => {
   dispatch(authRequest());
-  const authToken = getState().auth.authToken;
+  const jwtToken = getState().auth.jwtToken;
   return fetch(`${API_BASE_URL}/auth/refresh`, {
     method: 'POST',
     headers: {
       // Provide existing token as credentials to get new one
-      Authorization: `Bearer ${authToken}`
+      Authorization: `Bearer ${jwtToken}`
     }
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+  .then(({jwtToken}) => storeAuthInfo(jwtToken, dispatch))
   .catch(err => {
     dispatch(authError(err));
     dispatch(clearAuth());
-    clearAuth(authToken);
+    clearAuthToken(jwtToken);
   });
 };

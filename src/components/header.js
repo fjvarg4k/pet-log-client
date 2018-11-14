@@ -34,7 +34,7 @@ export class Header extends React.Component {
       );
 
       logoutButton = (
-        <li onClick={() => this.logout()}><Link to="/" className="header-link">Log Out</Link></li>
+        <li onClick={() => this.logOut()}><Link to="/" className="header-link">Log Out</Link></li>
       );
 
       appTitle = (

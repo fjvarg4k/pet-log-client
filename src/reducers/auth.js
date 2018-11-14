@@ -7,7 +7,7 @@ import {
 } from '../actions/auth';
 
 const intitialState = {
-  authToken: null,
+  jwtToken: null,
   currentUser: null,
   loading: false,
   error: null
@@ -16,9 +16,14 @@ const intitialState = {
 export default function reducer(state = intitialState, action) {
   if (action.type === SET_AUTH_TOKEN) {
     return Object.assign({}, state, {
-      authToken: action.authToken
+      jwtToken: action.jwtToken
     });
   } else if (action.type === CLEAR_AUTH) {
+    return Object.assign({}, state, {
+      authToken: null,
+      currentUser: null
+    });
+  } else if (action.type === AUTH_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
       error: null

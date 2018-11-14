@@ -1,15 +1,15 @@
 export const loadAuthToken = () => {
-  return localStorage.getItem('authToken');
+  return localStorage.getItem('jwtToken');
 };
 
-export const saveAuthToken = authToken => {
+export const saveAuthToken = jwtToken => {
   try {
-    localStorage.setItem('authToken', authToken);
+    localStorage.setItem('jwtToken', jwtToken);
   } catch (e) {}
 };
 
 export const clearAuthToken = () => {
   try {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('jwtToken');
   } catch (e) {}
 };

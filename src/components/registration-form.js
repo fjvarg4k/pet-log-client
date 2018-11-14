@@ -25,7 +25,8 @@ export class RegistrationForm extends React.Component {
     return (
       <form
         className="registration-form"
-        onSubmit={this.onSubmit}
+        onSubmit={this.props.handleSubmit(values =>
+        this.onSubmit(values))}
       >
         <fieldset>
           <legend>Sign Up</legend>

@@ -1,16 +1,23 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
+import { createNewDog } from '../actions/dog';
 import Input from './input';
 import { required, nonEmpty, isTrimmed } from '../validators';
 
 export class AddNewDogForm extends React.Component {
-  onSubmit(values) {}
+  onSubmit(values) {
+    const {name, breed, weight, age, gender} = values;
+    const dog = {name, breed, weight, age, gender};
+    return this.props
+      .dispatch(createNewDog(dog))
+  }
 
   render() {
     return (
       <form
         className="add-new-dog-form"
-        onSubmit={this.onSubmit}
+        onSubmit={this.props.handleSubmit(values =>
+        this.onSubmit(values))}
       >
         <fieldset>
           <legend>Register New Pet</legend>
