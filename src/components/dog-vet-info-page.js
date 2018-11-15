@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import requiresLogin from './requires-login';
 
 export class DogVetInfoPage extends React.Component {
   render() {
@@ -14,4 +15,4 @@ export class DogVetInfoPage extends React.Component {
   }
 }
 
-export default connect()(DogVetInfoPage);
+export default requiresLogin()(connect()(DogVetInfoPage));

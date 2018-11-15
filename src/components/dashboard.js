@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchDogs } from '../actions/dog';
+import requiresLogin from './requires-login';
 import Dogs from './dogs';
 
 export class Dashboard extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchDogs());
+  }
+
   render () {
     return (
       <div className="dashboard">
@@ -15,12 +21,7 @@ export class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  // const {currentUser} = state.auth;
-  return {
-    // username: state.auth.currentUser.username,
-    // name: `${currentUser.firstName}`,
-  };
-};
-
-export default connect(mapStateToProps)(Dashboard);
+const mapStateToProps = state => ({
+  // dogsList: state.dog.dogs
+});
+export default requiresLogin()(connect(mapStateToProps)(Dashboard));

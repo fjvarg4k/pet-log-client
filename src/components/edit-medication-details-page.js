@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import requiresLogin from './requires-login';
 import EditMedicationDetailsForm from './edit-medication-details-form';
 
 export class EditMedicationDetailsPage extends React.Component {
@@ -13,4 +14,4 @@ export class EditMedicationDetailsPage extends React.Component {
   }
 }
 
-export default connect()(EditMedicationDetailsPage);
+export default requiresLogin()(connect()(EditMedicationDetailsPage));

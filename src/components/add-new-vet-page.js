@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import requiresLogin from './requires-login';
 import AddNewVetForm from './add-new-vet-form';
 
 export class AddNewVetPage extends React.Component {
@@ -13,4 +14,4 @@ export class AddNewVetPage extends React.Component {
   }
 }
 
-export default connect()(AddNewVetPage);
+export default requiresLogin()(connect()(AddNewVetPage));

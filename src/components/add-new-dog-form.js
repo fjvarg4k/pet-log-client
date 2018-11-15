@@ -5,11 +5,16 @@ import Input from './input';
 import { required, nonEmpty, isTrimmed } from '../validators';
 
 export class AddNewDogForm extends React.Component {
+  // state = {
+  //   redirectToDashboard: false
+  // }
+
   onSubmit(values) {
-    const {name, breed, weight, age, gender} = values;
-    const dog = {name, breed, weight, age, gender};
-    return this.props
-      .dispatch(createNewDog(dog))
+    // const {name, breed, weight, age, gender} = values;
+    // const dog = {name, breed, weight, age, gender};
+    const dog = Object.assign({}, values);
+    return this.props.dispatch(createNewDog(dog));
+    // this.props.history.push('/dashboard');
   }
 
   render() {
@@ -48,7 +53,7 @@ export class AddNewDogForm extends React.Component {
 }
 
 export default reduxForm({
-  form: 'add-new-dog',
+  form: 'addNewDog',
   onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('add-new-dog', Object.keys(errors)[0]))
+    dispatch(focus('addNewDog', Object.keys(errors)[0]))
 })(AddNewDogForm);

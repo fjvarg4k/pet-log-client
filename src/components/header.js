@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { login } from '../actions/auth';
 import { clearAuth } from '../actions/auth';
+import { clearDogsOnLogout } from '../actions/dog';
 import { clearAuthToken } from '../local-storage';
 
 export class Header extends React.Component {
   logOut() {
     this.props.dispatch(clearAuth());
     clearAuthToken();
+    this.props.dispatch(clearDogsOnLogout());
   }
 
   render() {

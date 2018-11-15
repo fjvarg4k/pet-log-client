@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import requiresLogin from './requires-login';
 import EditDogDetailsForm from './edit-dog-details-form';
 
 export class EditDogDetailsPage extends React.Component {
@@ -13,4 +14,4 @@ export class EditDogDetailsPage extends React.Component {
   }
 }
 
-export default connect()(EditDogDetailsPage);
+export default requiresLogin()(connect()(EditDogDetailsPage));

@@ -18,13 +18,12 @@ export const fetchDogsError = error => ({
   error
 });
 
-
 // Fetch a specific user's dogs
 export const fetchDogs = () => (dispatch, getState) => {
   dispatch(fetchDogsRequest());
-  const token = getState().auth.authToken;
+  const token = getState().auth.jwtToken;
   return (
-    fetch (`${API_BASE_URL}/dog/`, {
+    fetch (`${API_BASE_URL}/dog`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -33,7 +32,7 @@ export const fetchDogs = () => (dispatch, getState) => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(({dogs}) => dispatch(fetchDogsSuccess(dogs)))
+    .then(resJson => dispatch(fetchDogsSuccess(resJson)))
     .catch(err => {
       dispatch(fetchDogsError(err))
     })
@@ -57,7 +56,7 @@ export const createNewDogError = error => ({
   error
 });
 
-export const createNewDog = (dog) => (dispatch, getState) => {
+export const createNewDog = dog => (dispatch, getState) => {
   dispatch(createNewDogRequest());
   const token = getState().auth.jwtToken;
   return (
@@ -70,13 +69,50 @@ export const createNewDog = (dog) => (dispatch, getState) => {
       body: JSON.stringify(dog)
     })
     .then(res => normalizeResponseErrors(res))
-    .then(res => {
-      console.log(res.json());
-      return res.json();
-    })
-    .then(dog => dispatch(createNewDogSuccess(dog)))
+    .then(res => res.json())
+    .then(resJson => dispatch(createNewDogSuccess(resJson)))
     .catch(err => {
       dispatch(createNewDogError(err))
+    })
+  );
+};
+
+export const CLEAR_DOGS_ON_LOGOUT = 'CLEAR_DOGS_ON_LOGOUT';
+export const clearDogsOnLogout = () => ({
+  type: CLEAR_DOGS_ON_LOGOUT
+});
+
+export const FETCH_DOG_BY_ID_REQUEST = 'FETCH_DOG_BY_ID_REQUEST';
+export const fetchDogByIdRequest = () => ({
+  type: FETCH_DOG_BY_ID_REQUEST
+});
+
+export const FETCH_DOG_BY_ID_SUCCESS = 'FETCH_DOG_BY_ID_SUCCESS';
+export const fetchDogByIdSuccess = dog => ({
+  type: FETCH_DOG_BY_ID_SUCCESS,
+  dog
+});
+
+export const FETCH_DOG_BY_ID_ERROR = 'FETCH_DOG_BY_ID_ERROR';
+export const fetchDogByIdError = error => ({
+  type: FETCH_DOG_BY_ID_ERROR,
+  error
+});
+
+export const fetchDogById = dogId => dispatch => {
+  dispatch(fetchDogByIdRequest);
+  return (
+    fetch(`${API_BASE_URL}/dog/${dogId}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(resJson => dispatch(fetchDogByIdSuccess(resJson)))
+    .catch(err => {
+      dispatch(fetchDogByIdError(err))
     })
   );
 };

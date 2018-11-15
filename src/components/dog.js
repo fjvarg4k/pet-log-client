@@ -1,18 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
-export class Dog extends React.Component {
-  render() {
-    return (
-      <div className="dog-overview">
-        <h6>Dog Name</h6>
-        <Link to="/dog-details">View Dog Info</Link>
-        <Link to="/dog-medication">View Medication Info</Link>
-        <Link to="/vet-info">View Vet Info</Link>
-      </div>
-    );
-  }
+const Dog = (props) => {
+  return (
+    <div className="dog-overview">
+      <h3>{props.dog.name}</h3>
+      {/* <Link to="/dog-details">View Dog Info</Link> */}
+      <button onClick={() => props.history.push(`/dog-details/${props.dog.id}`)}>View Dog Info</button>
+      <Link to="/dog-medication">View Medication Info</Link>
+      {/* <Link to="/vet-info">View Vet Info</Link> */}
+      <button onClick={() => props.history.push(`/vet-info/${props.dog.id}`)}>View View Info</button>
+    </div>
+  );
 }
 
-export default connect()(Dog);
+export default (withRouter)(Dog);

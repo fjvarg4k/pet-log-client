@@ -20,7 +20,7 @@ export default function reducer(state = intitialState, action) {
     });
   } else if (action.type === CLEAR_AUTH) {
     return Object.assign({}, state, {
-      authToken: null,
+      jwtToken: null,
       currentUser: null
     });
   } else if (action.type === AUTH_REQUEST) {

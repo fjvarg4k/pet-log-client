@@ -4,13 +4,24 @@ import Dog from './dog';
 
 export class Dogs extends React.Component {
   render() {
+    const dogs = this.props.dogsList;
+    const dogPortals = dogs.map((dog, index) => {
+      return (
+        <Dog dog={dog} dispatch={this.props.dispatch} key={index} />
+      );
+    });
+
     return (
       <div className="dogs-list">
         <h4>Your Pets</h4>
-        <Dog />
+        {dogPortals}
       </div>
     );
   }
 }
 
-export default connect()(Dogs);
+const mapStateToProps = state => ({
+  dogsList: state.dog.dogs
+});
+
+export default connect(mapStateToProps)(Dogs);

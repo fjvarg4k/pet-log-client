@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import requiresLogin from './requires-login';
 import Medication from './medication';
 
 export class DogMedicationPage extends React.Component {
@@ -15,4 +16,4 @@ export class DogMedicationPage extends React.Component {
   }
 }
 
-export default connect()(DogMedicationPage);
+export default requiresLogin()(connect()(DogMedicationPage));
