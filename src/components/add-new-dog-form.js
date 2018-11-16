@@ -5,16 +5,9 @@ import Input from './input';
 import { required, nonEmpty, isTrimmed } from '../validators';
 
 export class AddNewDogForm extends React.Component {
-  // state = {
-  //   redirectToDashboard: false
-  // }
-
   onSubmit(values) {
-    // const {name, breed, weight, age, gender} = values;
-    // const dog = {name, breed, weight, age, gender};
     const dog = Object.assign({}, values);
     return this.props.dispatch(createNewDog(dog));
-    // this.props.history.push('/dashboard');
   }
 
   render() {

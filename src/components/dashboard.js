@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchDogs } from '../actions/dog';
+// import { fetchDogMedications } from '../actions/medication';
 import requiresLogin from './requires-login';
 import Dogs from './dogs';
 
@@ -22,6 +23,6 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  // dogsList: state.dog.dogs
+  dogsList: state.dog.dogs
 });
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));

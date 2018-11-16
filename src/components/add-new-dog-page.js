@@ -6,8 +6,9 @@ import AddNewDogForm from './add-new-dog-form';
 
 export function AddNewDogPage(props) {
   if (props.submitSuccess) {
-    return <Redirect to="dashboard" />
+    return <Redirect to="/dashboard" />
   }
+
   return (
     <div className="add-new-dog">
       <h3>Add New Dog</h3>

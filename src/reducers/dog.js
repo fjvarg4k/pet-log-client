@@ -8,7 +8,13 @@ import {
   CLEAR_DOGS_ON_LOGOUT,
   FETCH_DOG_BY_ID_REQUEST,
   FETCH_DOG_BY_ID_SUCCESS,
-  FETCH_DOG_BY_ID_ERROR
+  FETCH_DOG_BY_ID_ERROR,
+  UPDATE_DOG_BY_ID_REQUEST,
+  UPDATE_DOG_BY_ID_SUCCESS,
+  UPDATE_DOG_BY_ID_ERROR,
+  CREATE_VET_INFO_BY_ID_REQUEST,
+  CREATE_VET_INFO_BY_ID_SUCCESS,
+  CREATE_VET_INFO_BY_ID_ERROR
 } from '../actions/dog';
 
 const intitialState = {
@@ -16,7 +22,8 @@ const intitialState = {
   submittedForm: null,
   loading: false,
   error: null,
-  currentDog: null
+  currentDog: {},
+  vetAdded: false
 };
 
 export default function reducer(state = intitialState, action) {
@@ -73,6 +80,36 @@ export default function reducer(state = intitialState, action) {
     return Object.assign({}, state, {
       loading: false,
       error: action.error
+    });
+  } else if (action.type === UPDATE_DOG_BY_ID_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+      submittedForm: null,
+      error: null
+    });
+  } else if (action.type === UPDATE_DOG_BY_ID_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      submittedForm: true,
+      currentDog: action.dog
+    });
+  } else if (action.type === UPDATE_DOG_BY_ID_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      submittedForm: false,
+      error: action.error
+    });
+  } else if (action.type === CREATE_VET_INFO_BY_ID_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+      submittedForm: null,
+      error: null
+    });
+  } else if (action.type === CREATE_VET_INFO_BY_ID_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      submittedForm: true,
+      vetAdded: true
     });
   }
   return state;

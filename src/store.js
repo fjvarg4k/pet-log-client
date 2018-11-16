@@ -4,13 +4,15 @@ import thunk from 'redux-thunk';
 import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth';
 import dogReducer from './reducers/dog';
+import medicationReducer from './reducers/medication';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 
 const store = createStore(
   combineReducers({
     form: formReducer,
     auth: authReducer,
-    dog: dogReducer
+    dog: dogReducer,
+    medication: medicationReducer
   }),
   compose(
     applyMiddleware(thunk),

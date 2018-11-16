@@ -1,21 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty, isTrimmed } from '../validators';
+import { updateDogById } from '../actions/dog';
 
 export class EditDogDetailsForm extends React.Component {
-  onSubmit(values) {}
+  onSubmit(values) {
+    const updatedDog = Object.assign({}, values);
+    this.props.dispatch(updateDogById(updatedDog));
+    this.props.history.push(`/dog-details/${this.props.initialValues.id}`);
+  }
 
   render() {
     return (
       <form
         className="edit-dog-details-form"
-        onSubmit={this.onSubmit}
+        onSubmit={this.props.handleSubmit(values =>
+        this.onSubmit(values))}
       >
         <fieldset>
           <legend>Edit Dog Info</legend>
           <label className="form-label" htmlFor="name">Name</label>
-          <Field component={Input} type="text" name="name" validate={[required, nonEmpty, isTrimmed]} />
+          <Field component={Input} type="text" name="name" validate={[required, nonEmpty, isTrimmed]}/>
           <label className="form-label" htmlFor="breed">Breed</label>
           <Field component={Input} type="text" name="breed" />
           <label className="form-label" htmlFor="weight">Weight</label>
@@ -40,8 +48,14 @@ export class EditDogDetailsForm extends React.Component {
   }
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  initialValues: state.dog.currentDog
+});
+
+EditDogDetailsForm = reduxForm({
   form: 'edit-dog-details',
   onSubmitFail: (errors, dispatch) =>
     dispatch(focus('edit-dog-details', Object.keys(errors)[0]))
-})(EditDogDetailsForm);
+})(EditDogDetailsForm)
+
+export default withRouter(connect(mapStateToProps)(EditDogDetailsForm));

@@ -1,25 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus } from 'redux-form';
+import { updateDogById } from '../actions/dog';
 import Input from './input';
 // import { required, nonEmpty, isTrimmed } from '../validators';
 
 export class EditVetInfoDetailsForm extends React.Component {
-  onSubmit(values) {}
+  onSubmit(values) {
+    const dog = this.props.initialValues;
+    dog.vetInfo.vetName = values.vetInfo.vetName;
+    dog.vetInfo.vetLocationName = values.vetInfo.vetLocationName;
+    dog.vetInfo.address = values.vetInfo.address;
+    this.props.dispatch(updateDogById(dog));
+    this.props.history.push(`/vet-info/${dog.id}`);
+  }
 
   render() {
     return (
       <form
         className="edit-vet-info-form"
-        onSubmit={this.onSubmit}
+        onSubmit={this.props.handleSubmit(values =>
+        this.onSubmit(values))}
       >
         <fieldset>
-          <legend>Edit Dog Info</legend>
-          <label className="form-label" htmlFor="vetName">Vet Name</label>
-          <Field component={Input} type="text" name="vetName"  />
-          <label className="form-label" htmlFor="vetLocationName">Vet Location Name</label>
-          <Field component={Input} type="text" name="vetLocationName" />
-          <label className="form-label" htmlFor="address">Address</label>
-          <Field component={Input} type="text" name="address" />
+          <legend>Edit Vet Info</legend>
+          <label className="form-label" htmlFor="vetInfo.vetName">Vet Name</label>
+          <Field component={Input} type="text" name="vetInfo.vetName" />
+          <label className="form-label" htmlFor="vetInfo.vetLocationName">Vet Location Name</label>
+          <Field component={Input} type="text" name="vetInfo.vetLocationName" />
+          <label className="form-label" htmlFor="vetInfo.address">Address</label>
+          <Field component={Input} type="text" name="vetInfo.address" />
           <button
             className="form-button"
             type="submit"
@@ -33,8 +44,20 @@ export class EditVetInfoDetailsForm extends React.Component {
   }
 }
 
-export default reduxForm({
+// export default reduxForm({
+//   form: 'edit-vet-info',
+//   onSubmitFail: (errors, dispatch) =>
+//     dispatch(focus('edit-vet-info', Object.keys(errors)[0]))
+// })(EditVetInfoDetailsForm);
+
+const mapStateToProps = state => ({
+  initialValues: state.dog.currentDog
+});
+
+EditVetInfoDetailsForm = reduxForm({
   form: 'edit-vet-info',
   onSubmitFail: (errors, dispatch) =>
     dispatch(focus('edit-vet-info', Object.keys(errors)[0]))
-})(EditVetInfoDetailsForm);
+})(EditVetInfoDetailsForm)
+
+export default withRouter(connect(mapStateToProps)(EditVetInfoDetailsForm));
