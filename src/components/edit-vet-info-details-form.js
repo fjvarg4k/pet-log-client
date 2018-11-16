@@ -16,6 +16,10 @@ export class EditVetInfoDetailsForm extends React.Component {
     this.props.history.push(`/vet-info/${dog.id}`);
   }
 
+  handleCancellation() {
+    this.props.history.push(`/vet-info/${this.props.initialValues.id}`);
+  }
+
   render() {
     return (
       <form
@@ -38,17 +42,17 @@ export class EditVetInfoDetailsForm extends React.Component {
           >
             Confirm Edit
           </button>
+          <button
+            className="form-button"
+            onClick={() => this.handleCancellation()}
+          >
+            Cancel
+          </button>
         </fieldset>
       </form>
     );
   }
 }
-
-// export default reduxForm({
-//   form: 'edit-vet-info',
-//   onSubmitFail: (errors, dispatch) =>
-//     dispatch(focus('edit-vet-info', Object.keys(errors)[0]))
-// })(EditVetInfoDetailsForm);
 
 const mapStateToProps = state => ({
   initialValues: state.dog.currentDog

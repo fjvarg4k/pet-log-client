@@ -13,6 +13,10 @@ export class EditDogDetailsForm extends React.Component {
     this.props.history.push(`/dog-details/${this.props.initialValues.id}`);
   }
 
+  handleCancellation() {
+    this.props.history.push(`/dog-details/${this.props.initialValues.id}`)
+  }
+
   render() {
     return (
       <form
@@ -40,7 +44,13 @@ export class EditDogDetailsForm extends React.Component {
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
           >
-            Confirm Edit
+            Confirm Changes
+          </button>
+          <button
+            className="form-button"
+            onClick={() => this.handleCancellation()}
+          >
+            Cancel
           </button>
         </fieldset>
       </form>

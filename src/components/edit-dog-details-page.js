@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import requiresLogin from './requires-login';
 import EditDogDetailsForm from './edit-dog-details-form';
 
@@ -14,8 +13,4 @@ export function EditDogDetailsPage(props) {
   );
 }
 
-const mapStateToProps = state => ({
-  submitSuccess: state.dog.submittedForm === true
-});
-
-export default requiresLogin()(connect(mapStateToProps)(EditDogDetailsPage));
+export default requiresLogin()(connect()(EditDogDetailsPage));

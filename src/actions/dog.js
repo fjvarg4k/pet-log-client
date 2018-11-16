@@ -56,6 +56,8 @@ export const createNewDogError = error => ({
   error
 });
 
+
+// Creates a new dog
 export const createNewDog = dog => (dispatch, getState) => {
   dispatch(createNewDogRequest());
   const token = getState().auth.jwtToken;
@@ -77,6 +79,7 @@ export const createNewDog = dog => (dispatch, getState) => {
   );
 };
 
+// Clears array of dogs from state when the user logs out
 export const CLEAR_DOGS_ON_LOGOUT = 'CLEAR_DOGS_ON_LOGOUT';
 export const clearDogsOnLogout = () => ({
   type: CLEAR_DOGS_ON_LOGOUT
@@ -99,6 +102,7 @@ export const fetchDogByIdError = error => ({
   error
 });
 
+// Retrieve a dog by id
 export const fetchDogById = dogId => dispatch => {
   dispatch(fetchDogByIdRequest);
   return (
@@ -134,6 +138,7 @@ export const updateDogByIdError = error => ({
   error
 });
 
+// Update a dog's info by id
 export const updateDogById = dog => (dispatch, getState) => {
   dispatch(updateDogByIdRequest);
   const token = getState().auth.jwtToken;
@@ -155,43 +160,43 @@ export const updateDogById = dog => (dispatch, getState) => {
   );
 };
 
-export const CREATE_VET_INFO_BY_ID_REQUEST = 'CREATE_VET_INFO_BY_ID_REQUEST';
-export const createVetInfoByIdRequest = () => ({
-  type: CREATE_VET_INFO_BY_ID_REQUEST
-});
-
-export const CREATE_VET_INFO_BY_ID_SUCCESS = 'CREATE_VET_INFO_BY_ID_SUCCESS';
-export const createVetInfoByIdSuccess = dog => ({
-  type: CREATE_VET_INFO_BY_ID_SUCCESS,
-  dog
-});
-
-export const CREATE_VET_INFO_BY_ID_ERROR = 'CREATE_VET_INFO_BY_ID_ERROR';
-export const createVetInfoByIdError = error => ({
-  type: CREATE_VET_INFO_BY_ID_ERROR,
-  error
-});
-
-export const createVetInfoById = dog => (dispatch, getState) => {
-  dispatch(createVetInfoByIdRequest);
-  const token = getState().auth.jwtToken;
-  return (
-    fetch(`${API_BASE_URL}/dog/${dog.id}`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(dog)
-    })
-    .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
-    .then(resJson => dispatch(createVetInfoByIdSuccess(resJson)))
-    .catch(err => {
-      dispatch(createVetInfoByIdError(err))
-    })
-  );
-};
+// export const CREATE_VET_INFO_BY_ID_REQUEST = 'CREATE_VET_INFO_BY_ID_REQUEST';
+// export const createVetInfoByIdRequest = () => ({
+//   type: CREATE_VET_INFO_BY_ID_REQUEST
+// });
+//
+// export const CREATE_VET_INFO_BY_ID_SUCCESS = 'CREATE_VET_INFO_BY_ID_SUCCESS';
+// export const createVetInfoByIdSuccess = dog => ({
+//   type: CREATE_VET_INFO_BY_ID_SUCCESS,
+//   dog
+// });
+//
+// export const CREATE_VET_INFO_BY_ID_ERROR = 'CREATE_VET_INFO_BY_ID_ERROR';
+// export const createVetInfoByIdError = error => ({
+//   type: CREATE_VET_INFO_BY_ID_ERROR,
+//   error
+// });
+//
+// export const createVetInfoById = dog => (dispatch, getState) => {
+//   dispatch(createVetInfoByIdRequest);
+//   const token = getState().auth.jwtToken;
+//   return (
+//     fetch(`${API_BASE_URL}/dog/${dog.id}`, {
+//       method: 'PUT',
+//       headers: {
+//         'content-type': 'application/json',
+//         'Authorization': `Bearer ${token}`
+//       },
+//       body: JSON.stringify(dog)
+//     })
+//     .then(res => normalizeResponseErrors(res))
+//     .then(res => res.json())
+//     .then(resJson => dispatch(createVetInfoByIdSuccess(resJson)))
+//     .catch(err => {
+//       dispatch(createVetInfoByIdError(err))
+//     })
+//   );
+// };
 
 export const DELETE_DOG_BY_ID_REQUEST = 'DELETE_DOG_BY_ID_REQUEST';
 export const deleteDogByIdRequest = () => ({
@@ -221,8 +226,8 @@ export const deleteDogById = dogId => (dispatch, getState) => {
       }
     })
     .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
-    .then(resJson => dispatch(deleteDogByIdSuccess(resJson)))
+    // .then(res => res.json())
+    .then(() => dispatch(deleteDogByIdSuccess(dogId)))
     .catch(err => {
       dispatch(deleteDogByIdError(err))
     })

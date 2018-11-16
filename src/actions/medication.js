@@ -112,3 +112,78 @@ export const deleteDogMedication = medicationId => (dispatch, getState) => {
     })
   );
 };
+
+export const FETCH_MEDICATION_BY_ID_REQUEST = 'FETCH_MEDICATION_BY_ID_REQUEST';
+export const fetchMedicationByIdRequest = () => ({
+  type: FETCH_MEDICATION_BY_ID_REQUEST
+});
+
+export const FETCH_MEDICATION_BY_ID_SUCCESS = 'FETCH_MEDICATION_BY_ID_SUCCESS';
+export const fetchMedicationByIdSuccess = medication => ({
+  type: FETCH_MEDICATION_BY_ID_SUCCESS,
+  medication
+});
+
+export const FETCH_MEDICATION_BY_ID_ERROR = 'FETCH_MEDICATION_BY_ID_ERROR';
+export const fetchMedicationByIdError = error => ({
+  type: FETCH_MEDICATION_BY_ID_ERROR,
+  error
+});
+
+export const fetchMedicationById = medicationId => (dispatch, getState) => {
+  dispatch(fetchMedicationByIdRequest());
+  const token = getState().auth.jwtToken;
+  return (
+    fetch(`${API_BASE_URL}/medication/${medicationId}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(resJson => dispatch(fetchMedicationByIdSuccess(resJson)))
+    .catch(err => {
+      dispatch(fetchMedicationByIdError(err))
+    })
+  );
+};
+
+export const UPDATE_MEDICATION_BY_ID_REQUEST = 'UPDATE_MEDICATION_BY_ID_REQUEST';
+export const updateMedicationByIdRequest = () => ({
+  type: UPDATE_MEDICATION_BY_ID_REQUEST
+});
+
+export const UPDATE_MEDICATION_BY_ID_SUCCESS = 'UPDATE_MEDICATION_BY_ID_SUCCESS';
+export const updateMedicationByIdSuccess = medication => ({
+  type: UPDATE_MEDICATION_BY_ID_SUCCESS,
+  medication
+});
+
+export const UPDATE_MEDICATION_BY_ID_ERROR = 'UPDATE_MEDICATION_BY_ID_ERROR';
+export const updateMedicationByIdError = error => ({
+  type: UPDATE_MEDICATION_BY_ID_ERROR,
+  error
+});
+
+export const updateMedicationById = medication => (dispatch, getState) => {
+  dispatch(updateMedicationByIdRequest());
+  const token = getState().auth.jwtToken;
+  return (
+    fetch(`${API_BASE_URL}/medication/${medication.id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(medication)
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(resJson => dispatch(updateMedicationByIdSuccess(resJson)))
+    .catch(err => {
+      dispatch(updateMedicationByIdError(err))
+    })
+  );
+};

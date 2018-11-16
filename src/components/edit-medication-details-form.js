@@ -1,16 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus } from 'redux-form';
+import { updateMedicationById } from '../actions/medication';
 import Input from './input';
 import TextArea from './textarea';
 
 export class EditMedicationDetailsForm extends React.Component {
-  onSubmit(values) {}
+  onSubmit(values) {
+    const updatedMedication = Object.assign({}, values);
+    console.log(updatedMedication);
+    this.props.dispatch(updateMedicationById(updatedMedication));
+    this.props.history.push(`/medication-details/${updatedMedication.id}`)
+  }
+
+  handleCancellation() {
+    this.props.history.push(`/medication-details/${this.props.initialValues.id}`);
+  }
 
   render() {
     return (
       <form
         className="edit-medication-details-form"
-        onSubmit={this.onSubmit}
+        onSubmit={this.props.handleSubmit(values =>
+        this.onSubmit(values))}
       >
         <fieldset>
           <legend>Edit Medication Info</legend>
@@ -27,7 +40,13 @@ export class EditMedicationDetailsForm extends React.Component {
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
           >
-            Confirm Edit
+            Confirm Changes
+          </button>
+          <button
+            className="form-button"
+            onClick={() => this.handleCancellation()}
+          >
+            Cancel
           </button>
         </fieldset>
       </form>
@@ -35,8 +54,14 @@ export class EditMedicationDetailsForm extends React.Component {
   }
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  initialValues: state.medication.currentMedication
+});
+
+EditMedicationDetailsForm = reduxForm({
   form: 'edit-medication-details',
   onSubmitFail: (errors, dispatch) =>
     dispatch(focus('edit-medication-details', Object.keys(errors)[0]))
-})(EditMedicationDetailsForm);
+})(EditMedicationDetailsForm)
+
+export default withRouter(connect(mapStateToProps)(EditMedicationDetailsForm));

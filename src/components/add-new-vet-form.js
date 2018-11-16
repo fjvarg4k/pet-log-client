@@ -8,16 +8,16 @@ import { updateDogById } from '../actions/dog';
 
 export class AddNewVetForm extends React.Component {
   onSubmit(values) {
-    // const vetInfo = Object.assign({}, values);
-    // const {vetName, vetLocationName, address} = values;
-    // const vetInfo = {};
-    // vetInfo = vetName, vetLocationName, address;
     const dog = this.props.initialValues;
     dog.vetInfo.vetName = values.vetName;
     dog.vetInfo.vetLocationName = values.vetLocationName;
     dog.vetInfo.address = values.address;
     this.props.dispatch(updateDogById(dog));
     this.props.history.push(`/vet-info/${dog.id}`);
+  }
+
+  handleCancellation() {
+    this.props.history.push(`/vet-info/${this.props.initialValues.id}`);
   }
 
   render() {
@@ -41,6 +41,12 @@ export class AddNewVetForm extends React.Component {
             disabled={this.props.pristine || this.props.submitting}
           >
             Submit
+          </button>
+          <button
+            className="form-button"
+            onClick={() => this.handleCancellation()}
+          >
+            Cancel
           </button>
         </fieldset>
       </form>

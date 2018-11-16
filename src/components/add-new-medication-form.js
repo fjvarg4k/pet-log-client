@@ -8,10 +8,14 @@ import TextArea from './textarea';
 
 export class AddNewMedicationForm extends React.Component {
   onSubmit(values) {
-    const dog = this.props.initialValues;
+    // const dog = this.props.dogId;
     const medication = Object.assign({}, values);
-    this.props.dispatch(createNewMedication(dog.id, medication));
-    this.props.history.push(`/dog-medication/${dog.id}`);
+    this.props.dispatch(createNewMedication(this.props.dogId, medication));
+    this.props.history.push(`/dog-medication/${this.props.dogId}`);
+  }
+
+  handleCancellation() {
+    this.props.history.push(`/dog-medication/${this.props.dogId}`)
   }
 
   render() {
@@ -38,20 +42,20 @@ export class AddNewMedicationForm extends React.Component {
           >
             Add
           </button>
+          <button
+            className="form-button"
+            onClick={() => this.handleCancellation()}
+          >
+            Cancel
+          </button>
         </fieldset>
       </form>
     );
   }
 }
 
-// export default reduxForm({
-//   form: 'add-new-medication',
-//   onSubmitFail: (errors, dispatch) =>
-//     dispatch(focus('add-new-medication', Object.keys(errors)[0]))
-// })(AddNewMedicationForm);
-
 const mapStateToProps = state => ({
-  initialValues: state.dog.currentDog
+  dogId: state.dog.currentDog.id
 });
 
 AddNewMedicationForm = reduxForm({

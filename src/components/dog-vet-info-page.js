@@ -33,6 +33,7 @@ export class DogVetInfoPage extends React.Component {
   render() {
     return (
       <div className="dog-vet-info">
+        <Link to="/dashboard">Back</Link>
         <h6>Vet Info</h6>
         <Link to="/add-new-vet">Add Vet Info</Link>
         {this.checkVetInfo()}

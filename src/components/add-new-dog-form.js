@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus } from 'redux-form';
 import { createNewDog } from '../actions/dog';
 import Input from './input';
@@ -8,6 +9,10 @@ export class AddNewDogForm extends React.Component {
   onSubmit(values) {
     const dog = Object.assign({}, values);
     return this.props.dispatch(createNewDog(dog));
+  }
+
+  handleCancellation() {
+    this.props.history.push('/dashboard');
   }
 
   render() {
@@ -39,14 +44,22 @@ export class AddNewDogForm extends React.Component {
           >
             Submit
           </button>
+          <button
+            className="form-button"
+            onClick={() => this.handleCancellation()}
+          >
+            Cancel
+          </button>
         </fieldset>
       </form>
     );
   }
 }
 
-export default reduxForm({
-  form: 'addNewDog',
+AddNewDogForm = reduxForm({
+  form: 'add-new-dog',
   onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('addNewDog', Object.keys(errors)[0]))
-})(AddNewDogForm);
+    dispatch(focus('add-new-dog', Object.keys(errors)[0]))
+})(AddNewDogForm)
+
+export default (withRouter)(AddNewDogForm);

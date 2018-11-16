@@ -12,9 +12,9 @@ import {
   UPDATE_DOG_BY_ID_REQUEST,
   UPDATE_DOG_BY_ID_SUCCESS,
   UPDATE_DOG_BY_ID_ERROR,
-  CREATE_VET_INFO_BY_ID_REQUEST,
-  CREATE_VET_INFO_BY_ID_SUCCESS,
-  CREATE_VET_INFO_BY_ID_ERROR
+  DELETE_DOG_BY_ID_REQUEST,
+  DELETE_DOG_BY_ID_SUCCESS,
+  DELETE_DOG_BY_ID_ERROR
 } from '../actions/dog';
 
 const intitialState = {
@@ -22,8 +22,7 @@ const intitialState = {
   submittedForm: null,
   loading: false,
   error: null,
-  currentDog: {},
-  vetAdded: false
+  currentDog: {}
 };
 
 export default function reducer(state = intitialState, action) {
@@ -99,17 +98,21 @@ export default function reducer(state = intitialState, action) {
       submittedForm: false,
       error: action.error
     });
-  } else if (action.type === CREATE_VET_INFO_BY_ID_REQUEST) {
+  } else if (action.type === DELETE_DOG_BY_ID_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
-      submittedForm: null,
       error: null
     });
-  } else if (action.type === CREATE_VET_INFO_BY_ID_SUCCESS) {
+  } else if (action.type === DELETE_DOG_BY_ID_SUCCESS) {
+    const dogs = state.dogs.filter(dog => dog.id !== action.dogId);
     return Object.assign({}, state, {
       loading: false,
-      submittedForm: true,
-      vetAdded: true
+      dogs: [...dogs]
+    });
+  } else if (action.type === DELETE_DOG_BY_ID_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
     });
   }
   return state;

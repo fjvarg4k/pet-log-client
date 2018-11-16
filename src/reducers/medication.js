@@ -7,7 +7,13 @@ import {
   CREATE_NEW_MEDICATION_ERROR,
   DELETE_DOG_MEDICATION_REQUEST,
   DELETE_DOG_MEDICATION_SUCCESS,
-  DELETE_DOG_MEDICATION_ERROR
+  DELETE_DOG_MEDICATION_ERROR,
+  FETCH_MEDICATION_BY_ID_REQUEST,
+  FETCH_MEDICATION_BY_ID_SUCCESS,
+  FETCH_MEDICATION_BY_ID_ERROR,
+  UPDATE_MEDICATION_BY_ID_REQUEST,
+  UPDATE_MEDICATION_BY_ID_SUCCESS,
+  UPDATE_MEDICATION_BY_ID_ERROR
 } from '../actions/medication';
 
 const intitialState = {
@@ -15,7 +21,7 @@ const intitialState = {
   loading: false,
   error: null,
   submittedForm: null,
-  medicationDeleted: null,
+  // medicationDeleted: null,
   currentMedication: {}
 };
 
@@ -24,7 +30,7 @@ export default function reducer(state = intitialState, action) {
     return Object.assign({}, state, {
       loading: true,
       error: null,
-      medicationDeleted: null,
+      // medicationDeleted: null,
       submittedForm: null
     });
   } else if (action.type === FETCH_DOG_MEDICATIONS_SUCCESS) {
@@ -64,13 +70,47 @@ export default function reducer(state = intitialState, action) {
     const medications = state.medications.filter(medication => medication.id !== action.medicationId);
     return Object.assign({}, state, {
       loading: false,
-      medicationDeleted: true,
-      medications: [...medications]
+      // medicationDeleted: true,
+      medications: [...medications],
+      currentMedication: {}
     });
   } else if (action.type === DELETE_DOG_MEDICATION_ERROR) {
     return Object.assign({}, state, {
       loading: false,
-      medicationDeleted: false,
+      // medicationDeleted: false,
+      error: action.error
+    });
+  } else if (action.type === FETCH_MEDICATION_BY_ID_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+      error: null,
+    });
+  } else if (action.type === FETCH_MEDICATION_BY_ID_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      currentMedication: action.medication
+    });
+  } else if (action.type === FETCH_MEDICATION_BY_ID_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
+    });
+  } else if (action.type === UPDATE_MEDICATION_BY_ID_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+      submittedForm: null,
+      error: null
+    });
+  } else if (action.type === UPDATE_MEDICATION_BY_ID_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      submittedForm: true,
+      currentDog: action.medication
+    });
+  } else if (action.type === UPDATE_MEDICATION_BY_ID_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      submittedForm: false,
       error: action.error
     });
   }
