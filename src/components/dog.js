@@ -3,12 +3,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 export class Dog extends React.Component {
-  // handleVetBtn() {
-  //   if (condition) {
-  //
-  //   }
-  // }
-
   render() {
     return (
       <div className="dog-overview">

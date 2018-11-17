@@ -26,19 +26,6 @@ export class DogVetInfoPage extends React.Component {
     }
   }
 
-  // checkVetInfo() {
-  //   if (this.props.dogInfo !== undefined) {
-  //     return (
-  //       <div className="vet-details">
-  //         <p>Veterinarian Name: {this.props.dogInfo.vetName}</p>
-  //         <p>Vet Location Name: {this.props.dogInfo.vetLocationName}</p>
-  //         <p>Address: {this.props.dogInfo.address}</p>
-  //         <Link to="/edit-vet-info">Edit Vet Info</Link>
-  //       </div>
-  //     );
-  //   }
-  // }
-
   render() {
     return (
       <div className="dog-vet-info">
