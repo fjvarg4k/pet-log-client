@@ -8,10 +8,11 @@ export function LoginPage(props) {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <div className="registration">
-      <h2>Log In</h2>
+    <div className="login">
       <LoginForm />
-      <p>Don't have an account?</p><Link to="/registration">Register</Link>
+      <div className="signup-login-redirect">
+        <p className="redirect-prompt">Don't have an account?</p><Link className="signup-login-redirect-link" to="/registration">Register</Link>
+      </div>
     </div>
   );
 }

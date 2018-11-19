@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { fetchDogMedications } from '../actions/medication';
 import { fetchDogById } from '../actions/dog';
 import requiresLogin from './requires-login';
-// import Medication from './medication';
+import './dog-medication-page.css';
 
 export class DogMedicationPage extends React.Component {
   componentDidMount() {
@@ -16,19 +16,23 @@ export class DogMedicationPage extends React.Component {
     const medications = this.props.medicationsList;
     const medicationInfo = medications.map((medication, index) => {
       return (
-        <div className="medication-info-link" key={index}>
-          <h3>{medication.name}</h3>
-          <button onClick={() => this.props.history.push(`/medication-details/${medication._id}`)}>View Medication Info</button>
+        <div className="dog-overview" key={index}>
+          <h3 className="dog-overview-title">{medication.name}</h3>
+          <div className="dog-overview-button-container">
+            <button className="dog-overview-button" onClick={() => this.props.history.push(`/medication-details/${medication._id}`)}>View Medication Info</button>
+          </div>
         </div>
       );
     })
 
     return (
       <div className="medication-list">
-        <Link to="/dashboard">Back</Link>
-        <h4>Your Pet's Medication</h4>
-        <Link to="/add-new-medication">Add New Medication</Link>
-        {medicationInfo}
+        <div className="add-new-medication-button-container">
+          <Link className="add-new-medication-button" to="/add-new-medication"><i className="fas fa-plus-circle button-icon"></i>Add New Medication</Link>
+        </div>
+        <div className="dogs-list">
+          {medicationInfo}
+        </div>
       </div>
     );
   }

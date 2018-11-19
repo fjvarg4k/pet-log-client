@@ -53,23 +53,31 @@ export class App extends React.Component {
   render() {
     return (
       // <Router>
-        <div className="App">
-          <Header />
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/registration" component={RegistrationPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/add-new-dog" component={AddNewDogPage} />
-          <Route exact path="/add-new-medication" component={AddNewMedicationPage} />
-          <Route exact path="/add-new-vet" component={AddNewVetPage} />
-          <Route path="/dog-details/:dogid" component={DogDetailsPage} />
-          <Route path="/dog-medication/:dogid" component={DogMedicationPage} />
-          <Route path="/medication-details/:medicationid" component={MedicationDetailsPage} />
-          <Route path="/vet-info/:dogid" component={DogVetInfoPage} />
-          <Route exact path="/edit-dog-details" component={EditDogDetailsPage} />
-          <Route exact path="/edit-medication-details" component={EditMedicationDetailsPage} />
-          <Route exact path="/edit-vet-info" component={EditVetInfoDetailsPage} />
-          <Footer />
+        <div id="wrapper">
+          <div id="header">
+            <Header />
+          </div>
+          <div id="content">
+            <main role="main">
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/registration" component={RegistrationPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/add-new-dog" component={AddNewDogPage} />
+              <Route exact path="/add-new-medication" component={AddNewMedicationPage} />
+              <Route exact path="/add-new-vet" component={AddNewVetPage} />
+              <Route path="/dog-details/:dogid" component={DogDetailsPage} />
+              <Route path="/dog-medication/:dogid" component={DogMedicationPage} />
+              <Route path="/medication-details/:medicationid" component={MedicationDetailsPage} />
+              <Route path="/vet-info/:dogid" component={DogVetInfoPage} />
+              <Route exact path="/edit-dog-details" component={EditDogDetailsPage} />
+              <Route exact path="/edit-medication-details" component={EditMedicationDetailsPage} />
+              <Route exact path="/edit-vet-info" component={EditVetInfoDetailsPage} />
+            </main>
+          </div>
+          <div id="footer">
+            <Footer />
+          </div>
         </div>
       // </Router>
     );

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { fetchDogById, deleteDogById } from '../actions/dog';
 import requiresLogin from './requires-login';
+import './dog-details-page.css';
 
 export class DogDetailsPage extends React.Component {
   componentDidMount() {
@@ -19,15 +20,18 @@ export class DogDetailsPage extends React.Component {
 
     return (
       <div className="dog-details">
-        <Link to="/dashboard">Back</Link>
-        <button onClick={() => this.handleDelete()}>Delete Pet Profile</button>
-        <h6>Dog Details</h6>
-        <p>Pet Name: {dog.name}</p>
-        <p>Pet Age: {dog.age}</p>
-        <p>Breed: {dog.breed}</p>
-        <p>Weight: {dog.weight} lb(s)</p>
-        <p>Gender: {dog.gender}</p>
-        <Link to="/edit-dog-details">Edit Dog Info</Link>
+        <div className="dog-details-button-container">
+          <button className="delete-dog-button" onClick={() => this.handleDelete()}><i className="fas fa-minus-circle button-icon"></i>Delete Pet Profile</button><br/>
+          <Link className="edit-dog-button" to="/edit-dog-details"><i className="fas fa-edit button-icon"></i>Edit Dog Info</Link>
+        </div>
+        <div className="dog-details-container">
+          <h3 className="dog-details-title item-heading">Dog Details</h3>
+          <p className="dog-details-item">Pet Name: {dog.name}</p>
+          <p className="dog-details-item">Pet Age: {dog.age}</p>
+          <p className="dog-details-item">Breed: {dog.breed}</p>
+          <p className="dog-details-item">Weight: {dog.weight} lb(s)</p>
+          <p className="dog-details-item">Gender: <span className="capitalize-gender">{dog.gender}</span></p>
+        </div>
       </div>
     );
   }

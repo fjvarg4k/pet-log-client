@@ -7,7 +7,6 @@ export function EditDogDetailsPage(props) {
 
   return (
     <div className="edit-dog-details">
-      <h3>Edit Dog Details</h3>
       <EditDogDetailsForm />
     </div>
   );

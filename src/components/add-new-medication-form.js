@@ -27,27 +27,53 @@ export class AddNewMedicationForm extends React.Component {
       >
         <fieldset>
           <legend>Add New Medication</legend>
-          <label className="form-label" htmlFor="name">Name</label>
-          <Field component={Input} type="text" name="name" />
-          <label className="form-label" htmlFor="medicationDays">Medication Days</label>
-          <Field component={Input} type="text" name="medicationDays" />
-          <label className="form-label" htmlFor="medicationTime">Medication Time</label>
-          <Field component={Input} type="text" name="medicationTime" />
-          <label className="form-label" htmlFor="medicationDescription">Medication Description</label>
-          <Field component={TextArea} type="TextArea" name="medicationDescription" />
-          <button
-            className="form-button"
-            type="submit"
-            disabled={this.props.pristine || this.props.submitting}
-          >
-            Add
-          </button>
-          <button
-            className="form-button"
-            onClick={() => this.handleCancellation()}
-          >
-            Cancel
-          </button>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="name">Name</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="name" />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="medicationDays">Medication Days</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="medicationDays" />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="medicationTime">Medication Time</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="medicationTime" />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="medicationDescription">Medication Description</label>
+            </div>
+            <div className="col-6">
+              <Field component={TextArea} type="TextArea" name="medicationDescription" />
+            </div>
+          </div>
+          <div className="form-button-container">
+            <button
+              className="form-button submit-button"
+              type="submit"
+              disabled={this.props.pristine || this.props.submitting}
+            >
+              Submit
+            </button>
+            <button
+              className="form-button cancel-button"
+              onClick={() => this.handleCancellation()}
+            >
+              Cancel
+            </button>
+          </div>
         </fieldset>
       </form>
     );

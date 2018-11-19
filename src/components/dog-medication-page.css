@@ -1,0 +1,18 @@
+.add-new-medication-button-container {
+  text-align: right;
+  margin: 20px 10px 20px 0;
+}
+
+.add-new-medication-button {
+  padding: 10px 25px;
+  border: 1px solid #00bd70;
+  border-radius: 5px;
+  background-color: #00bd70;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-new-medication-button:hover {
+  background-color: #098709;
+  border: 1px solid #098709;
+}

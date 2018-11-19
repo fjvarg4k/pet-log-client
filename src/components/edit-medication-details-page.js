@@ -7,7 +7,6 @@ export class EditMedicationDetailsPage extends React.Component {
   render() {
     return (
       <div className="edit-medication-details">
-        <h3>Edit Medication Details</h3>
         <EditMedicationDetailsForm />
       </div>
     );

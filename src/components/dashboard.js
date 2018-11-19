@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchDogs } from '../actions/dog';
-// import { fetchDogMedications } from '../actions/medication';
 import requiresLogin from './requires-login';
 import Dogs from './dogs';
+import './dashboard.css';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -14,8 +14,9 @@ export class Dashboard extends React.Component {
   render () {
     return (
       <div className="dashboard">
-        <h3>Hello</h3>
-        <Link to="/add-new-dog">Add New Dog</Link>
+        <div className="add-new-dog-button-container">
+          <Link className="add-new-dog-button" to="/add-new-dog"><i className="fas fa-plus-circle button-icon"></i>Add New Dog</Link>
+        </div>
         <Dogs />
       </div>
     );

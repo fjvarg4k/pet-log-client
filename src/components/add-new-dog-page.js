@@ -11,7 +11,6 @@ export function AddNewDogPage(props) {
 
   return (
     <div className="add-new-dog">
-      <h3>Add New Dog</h3>
       <AddNewDogForm />
     </div>
   );

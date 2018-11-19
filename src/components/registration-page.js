@@ -9,9 +9,10 @@ export function RegistrationPage(props) {
   }
   return (
     <div className="registration">
-      <h2>Registration</h2>
       <RegistrationForm />
-      <p>Already have an account?</p><Link to="/login">Login</Link>
+      <div className="signup-login-redirect">
+        <p className="redirect-prompt">Already have an account?</p><Link className="signup-login-redirect-link" to="/login">Login</Link>
+      </div>
     </div>
   );
 }

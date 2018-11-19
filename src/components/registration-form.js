@@ -7,7 +7,6 @@ import Input from './input';
 
 const usernameLengthRequirement = length({min: 4, max: 72});
 const passwordLengthRequirement = length({min: 4, max: 72});
-// const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
 
@@ -29,22 +28,48 @@ export class RegistrationForm extends React.Component {
         this.onSubmit(values))}
       >
         <fieldset>
-          <legend>Sign Up</legend>
-          <label className="form-label" htmlFor="firstName">First Name</label>
-          <Field component={Input} type="text" name="firstName" validate={[required, nonEmpty, isTrimmed]} />
-          <label className="form-label" htmlFor="lastName">Last Name</label>
-          <Field component={Input} type="text" name="lastName" validate={[required, nonEmpty, isTrimmed]} />
-          <label className="form-label" htmlFor="username">Username</label>
-          <Field component={Input} type="text" name="username" validate={[required, nonEmpty, isTrimmed, usernameLengthRequirement]} />
-          <label className="form-label" htmlFor="password">Password</label>
-          <Field component={Input} type="password" name="password" validate={[required, nonEmpty, isTrimmed, passwordLengthRequirement]} />
-          <button
-            className="form-button"
-            type="submit"
-            disabled={this.props.pristine || this.props.submitting}
-            >
-              Register
-            </button>
+          <legend>Registration</legend>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="firstName">First Name</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="firstName" validate={[required, nonEmpty, isTrimmed]} />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="lastName">Last Name</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="lastName" validate={[required, nonEmpty, isTrimmed]} />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="username">Username</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="username" validate={[required, nonEmpty, isTrimmed, usernameLengthRequirement]} />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="password">Password</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="password" name="password" validate={[required, nonEmpty, isTrimmed, passwordLengthRequirement]} />
+            </div>
+          </div>
+          <div className="form-button-container">
+            <button
+              className="form-button"
+              type="submit"
+              disabled={this.props.pristine || this.props.submitting}
+              >
+                Register
+              </button>
+          </div>
         </fieldset>
       </form>
     );

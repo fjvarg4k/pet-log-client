@@ -13,7 +13,6 @@ export class Dogs extends React.Component {
 
     return (
       <div className="dogs-list">
-        <h4>Your Pets</h4>
         {dogPortals}
       </div>
     );

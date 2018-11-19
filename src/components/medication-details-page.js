@@ -16,20 +16,20 @@ export class MedicationDetailsPage extends React.Component {
     this.props.history.push(`/dog-medication/${this.props.dog.id}`);
   }
 
-  handleRedirectToPreviousPage() {
-    this.props.history.push(`/dog-medication/${this.props.dog.id}`);
-  }
-
   render() {
     return (
       <div className="medication-details">
-        <button onClick={() => this.handleRedirectToPreviousPage()}>Back</button>
-        <button onClick={() => this.handleDelete()}>Delete Medication</button>
-        <p>Medication Name: {this.props.medication.name}</p>
-        <p>Medication Days: {this.props.medication.medicationDays}</p>
-        <p>Medication Time: {this.props.medication.medicationTime}</p>
-        <p>Medication Description: {this.props.medication.medicationDescription}</p>
-        <Link to="/edit-medication-details">Edit Medication Info</Link>
+        <div className="dog-details-button-container">
+          <button className="delete-dog-button" onClick={() => this.handleDelete()}><i className="fas fa-minus-circle button-icon"></i>Delete Medication</button>
+          <Link className="edit-dog-button" to="/edit-medication-details"><i className="fas fa-edit button-icon"></i>Edit Medication Info</Link>
+        </div>
+        <div className="dog-details-container">
+          <h3 className="dog-details-title item-heading">Medication Details</h3>
+          <p className="dog-details-item">Medication Name: {this.props.medication.name}</p>
+          <p className="dog-details-item">Medication Days: {this.props.medication.medicationDays}</p>
+          <p className="dog-details-item">Medication Time: {this.props.medication.medicationTime}</p>
+          <p className="dog-details-item">Medication Description: {this.props.medication.medicationDescription}</p>
+        </div>
       </div>
     );
   }

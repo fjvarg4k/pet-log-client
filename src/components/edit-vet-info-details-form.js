@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus } from 'redux-form';
 import { updateDogById } from '../actions/dog';
 import Input from './input';
-// import { required, nonEmpty, isTrimmed } from '../validators';
 
 export class EditVetInfoDetailsForm extends React.Component {
   onSubmit(values) {
@@ -29,25 +28,45 @@ export class EditVetInfoDetailsForm extends React.Component {
       >
         <fieldset>
           <legend>Edit Vet Info</legend>
-          <label className="form-label" htmlFor="vetInfo.vetName">Vet Name</label>
-          <Field component={Input} type="text" name="vetInfo.vetName" />
-          <label className="form-label" htmlFor="vetInfo.vetLocationName">Vet Location Name</label>
-          <Field component={Input} type="text" name="vetInfo.vetLocationName" />
-          <label className="form-label" htmlFor="vetInfo.address">Address</label>
-          <Field component={Input} type="text" name="vetInfo.address" />
-          <button
-            className="form-button"
-            type="submit"
-            disabled={this.props.pristine || this.props.submitting}
-          >
-            Confirm Edit
-          </button>
-          <button
-            className="form-button"
-            onClick={() => this.handleCancellation()}
-          >
-            Cancel
-          </button>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="vetInfo.vetName">Vet Name</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="vetInfo.vetName" />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="vetInfo.vetLocationName">Vet Location Name</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="vetInfo.vetLocationName" />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="vetInfo.address">Address</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="vetInfo.address" />
+            </div>
+          </div>
+          <div className="form-button-container">
+            <button
+              className="form-button submit-button"
+              type="submit"
+              disabled={this.props.pristine || this.props.submitting}
+            >
+              Submit
+            </button>
+            <button
+              className="form-button cancel-button"
+              onClick={() => this.handleCancellation()}
+            >
+              Cancel
+            </button>
+          </div>
         </fieldset>
       </form>
     );

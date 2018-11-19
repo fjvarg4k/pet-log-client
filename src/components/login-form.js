@@ -12,14 +12,14 @@ export class LoginForm extends React.Component {
   }
 
   render() {
-    // let error;
-    // if (this.props.error) {
-    //   error = (
-    //     <div className="form-error" aria-live="polite">
-    //       {this.props.error}
-    //     </div>
-    //   );
-    // }
+    let error;
+    if (this.props.error) {
+      error = (
+        <div className="form-error" aria-live="polite">
+          {this.props.error}
+        </div>
+      );
+    }
 
     return (
       <form
@@ -27,19 +27,34 @@ export class LoginForm extends React.Component {
         onSubmit={this.props.handleSubmit(values =>
         this.onSubmit(values))}
       >
+        {error}
         <fieldset>
           <legend>Log In</legend>
-          <label className="form-label" htmlFor="username">Username</label>
-          <Field component={Input} type="text" name="username" id="username" validate={[required, nonEmpty]} />
-          <label className="form-label" htmlFor="password">Password</label>
-          <Field component={Input} type="password" name="password" id="password" validate={[required, nonEmpty]} />
-          <button
-            className="form-button"
-            type="submit"
-            disabled={this.props.pristine || this.props.submitting}
-            >
-              Log in
-            </button>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="username">Username</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="text" name="username" id="username" validate={[required, nonEmpty]} />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-3 form-label-container">
+              <label className="form-label" htmlFor="password">Password</label>
+            </div>
+            <div className="col-6">
+              <Field component={Input} type="password" name="password" id="password" validate={[required, nonEmpty]} />
+            </div>
+          </div>
+          <div className="form-button-container">
+            <button
+              className="form-button"
+              type="submit"
+              disabled={this.props.pristine || this.props.submitting}
+              >
+                Log in
+              </button>
+          </div>
         </fieldset>
       </form>
     );
