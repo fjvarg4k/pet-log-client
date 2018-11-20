@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus } from 'redux-form';
 import { createNewDog } from '../actions/dog';
 import Input from './input';
+import RadioInput from './radio-input';
 import { required, nonEmpty, isTrimmed } from '../validators';
 
 export class AddNewDogForm extends React.Component {
@@ -61,7 +62,7 @@ export class AddNewDogForm extends React.Component {
               <label>Male</label>
             </div>
             <div className="col-6">
-              <Field component={Input} type="radio" id="gender" name="gender" value="male" validate={[required]} />
+              <Field component={RadioInput} type="radio" id="gender" name="gender" value="male" validate={[required]} />
             </div>
           </div>
           <div className="row form-group">
@@ -69,7 +70,7 @@ export class AddNewDogForm extends React.Component {
               <label>Female</label>
             </div>
             <div className="col-6">
-              <Field component={Input} type="radio" id="gender" name="gender" value="female" validate={[required]} />
+              <Field component={RadioInput} type="radio" id="gender" name="gender" value="female" validate={[required]} />
             </div>
           </div>
           <div className="form-button-container">
