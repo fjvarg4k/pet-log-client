@@ -35,7 +35,7 @@ export class Header extends React.Component {
       );
 
       demoLink = (
-        <li className="header-link" onClick={() => this.demoLogin()}><Link to="/">Demo</Link></li>
+        <li className="header-link" onClick={() => this.demoLogin()}><Link to="/dashboard">Demo</Link></li>
       );
     }
 

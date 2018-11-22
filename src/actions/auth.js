@@ -87,6 +87,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       Authorization: `Bearer ${jwtToken}`
     }
   })
+  // Checks for any errors in response
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
   .then(({jwtToken}) => storeAuthInfo(jwtToken, dispatch))
