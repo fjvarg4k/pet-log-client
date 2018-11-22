@@ -1,6 +1,7 @@
 # Pet Log
+A pet management web app created to simplify keeping track of important pet info. It was created using Node on the back end and React on the front end
 
-Live site up on: https://pet-log.herokuapp.com/
+__Live Deploy:__ https://pet-log.herokuapp.com/
 
 # Screenshots
 Landing Page:
@@ -18,7 +19,7 @@ Dog Details Page:
 Medication Page:
 ![pet-log-medication-page](https://user-images.githubusercontent.com/11948360/48874044-b1588780-edb6-11e8-9a9c-07db55617233.JPG)
 
-# Built With
+# Technologies Used
 * HTML
 * CSS
 * JavaScript
